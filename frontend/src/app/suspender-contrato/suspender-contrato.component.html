@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Suspensão do Contrato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="suspension-container">
+        <div class="suspension-header">
+            <h2><i class="fas fa-exclamation-triangle"></i> Suspensão de Contrato</h2>
+            <div class="header-border"></div>
+            <p class="subtitle">id_contrato</p>
+        </div>
+
+        <div class="suspension-form-container">
+            <form novalidate method="POST" action="" id="frmCancelamento_cadastro" class="suspension-form">
+                <input type="hidden" name="gravar" value="ok">
+                <input type="hidden" id="idCancelamento" value="">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data_suspensao">Data da Suspensão <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="data_suspensao" name="data_suspensao" class="form-control" readonly>
+                            <div class="form-hint">Data atual do sistema</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="curso_aluno">Curso do Aluno <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="curso_aluno" name="curso_aluno" class="form-control" readonly>
+                            <div class="form-hint">Curso vinculado ao contrato</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cancelamento_motivo">Motivo da Suspensão <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="cancelamento_motivo" id="cancelamento_motivo" class="form-control" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="AUSENCIA INJUSTIFICADA">Ausência injustificada</option>
+                            </select>
+                            <div class="form-hint">Selecione o motivo principal</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cancelamento_solicitacao">Solicitante <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="cancelamento_solicitacao" id="cancelamento_solicitacao" class="form-control"
+                                required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="EMPRESA">Empresa</option>
+                                <option value="CLIENTE">Cliente</option>
+                            </select>
+                            <div class="form-hint">Quem está solicitando a suspensão</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="observacao">
+                    <div class="header-observacao">
+                        <i class="fas fa-comment"></i>
+                        <h3>Observações</h3>
+                    </div>
+                    <div class="corpo-observacao">
+                        <div class="form-group">
+                            <textarea name="obs_cancelamento" id="obs_cancelamento" class="form-control" rows="5"
+                                placeholder="Informe os detalhes do cancelamento..."></textarea>
+                        </div>
+                        <div class="opcoes-observacao">
+                            <div class="check-observacao">
+                                <input type="checkbox" id="chk_contrato_ativo" name="chk_contrato_ativo" value="S">
+                                <label for="chk_contrato_ativo">Contrato nunca ativo</label>
+                            </div>
+                            <div class="check-observacao">
+                                <input type="checkbox" id="chk_contrato_refidelizacao" name="chk_contrato_refidelizacao"
+                                    value="S">
+                                <label for="chk_contrato_refidelizacao">Contrato de rematrícula</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="suspender_cancelar" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" id="salvar_cancelamento" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

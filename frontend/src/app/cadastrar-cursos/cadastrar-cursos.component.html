@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Cadastrar Cursos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="course-container">
+        <div class="course-header">
+            <h2><i class="fas fa-book-open"></i> Cadastrar Cursos</h2>
+            <div class="header-border"></div>
+        </div>
+
+        <div class="course-form-container">
+            <form novalidate method="POST" action="" id="frmCodigos_cadastro" class="course-form">
+                <input type="hidden" id="codigo_id" name="codigo_id" value="9">
+
+                <div class="form-row">
+                    <div class="form-group code-group">
+                        <label for="codigo_curso">Código do Curso <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="codigo_curso" name="codigo_curso" class="form-control" required
+                                data-validation-required-message="Campo obrigatório">
+                            <div class="form-hint">Gerado automaticamente pelo sistema</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="codigo_descricao">Descrição <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="codigo_descricao" id="codigo_descricao" class="form-control"
+                                required data-validation-required-message="Campo obrigatório">
+                            <div class="form-hint">Informe a descrição do curso</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="codigo_status">Status <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="codigo_status" id="codigo_status" required class="form-control">
+                                <option value="A" selected>Ativo</option>
+                                <option value="I">Inativo</option>
+                            </select>
+                            <div class="form-hint">Status do curso no sistema</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Dia da Aula <span class="required">*</span></label>
+                        <div class="days-container">
+                            <div class="day-option">
+                                <input type="checkbox" id="segunda" name="dias[]" value="segunda">
+                                <label for="segunda">Segunda</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="terca" name="dias[]" value="terca">
+                                <label for="terca">Terça</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="quarta" name="dias[]" value="quarta">
+                                <label for="quarta">Quarta</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="quinta" name="dias[]" value="quinta">
+                                <label for="quinta">Quinta</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="sexta" name="dias[]" value="sexta">
+                                <label for="sexta">Sexta</label>
+                            </div>
+                            <div class="day-option">
+                                <input type="checkbox" id="sabado" name="dias[]" value="sabado">
+                                <label for="sabado">Sábado</label>
+                            </div>
+                        </div>
+                        <div class="form-hint">Selecione os dias de aula</div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="voltar" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" id="gravar_codigos" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
