@@ -6,13 +6,13 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f5f7fa;
     color: #343434;
     line-height: 1.6;
     padding: 20px;
 }
 
-.contract-container {
+.professor-container {
     max-width: 900px;
     margin: 0 auto;
     background: white;
@@ -21,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-.contract-header {
+.professor-header {
     display: flex;
     align-items: center;
     padding: 1.5rem 2rem;
@@ -54,33 +54,31 @@ body {
     margin: 0;
 }
 
-.header-divider {
-    height: 3px;
-    background: linear-gradient(90deg, #df5326, #c44920);
-    margin-top: 1rem;
-}
-
-.contract-form {
+.professor-form {
     padding: 2rem;
 }
 
 .form-section {
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-left: 4px solid #df5326;
+    padding-left: 1.5rem;
 }
 
-.form-section legend {
-    font-weight: 600;
-    color: #343434;
-    padding: 0 1rem;
+.section-header {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    margin-bottom: 1.5rem;
 }
 
-.form-section legend i {
+.section-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #343434;
+    margin: 0;
+}
+
+.section-header i {
     color: #927c70;
     font-size: 1.1rem;
 }
@@ -102,8 +100,8 @@ body {
     flex: 1 0 100%;
 }
 
-.small-input {
-    flex: 0 0 150px;
+.input-wrapper {
+    position: relative;
 }
 
 label {
@@ -145,83 +143,6 @@ select.form-control {
     padding-right: 2.5rem;
 }
 
-.radio-group {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-}
-
-.radio-checkmark {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    position: relative;
-    transition: all 0.2s ease;
-}
-
-.radio-option input {
-    position: absolute;
-    opacity: 0;
-}
-
-.radio-option input:checked+.radio-checkmark {
-    border-color: #df5326;
-    background-color: #df5326;
-}
-
-.radio-option input:checked+.radio-checkmark::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-.combo-group {
-    position: relative;
-}
-
-.input-combo {
-    display: flex;
-}
-
-.input-combo .form-control {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.combo-btn {
-    background-color: #df5326;
-    color: white;
-    border: none;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    padding: 0 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-}
-
-.combo-btn:hover {
-    background-color: #c44920;
-}
-
 .form-hint {
     font-size: 0.8rem;
     color: #777;
@@ -229,23 +150,19 @@ select.form-control {
     font-style: italic;
 }
 
-.form-control.invalid {
-    border-color: #c62828;
+#codigo_status {
+    background-color: #f0f0f0;
+    border-left: 4px solid #df5326;
 }
 
-.form-control.invalid:focus {
-    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+#codigo_status option[value="A"] {
+    color: #2e7d32;
+    font-weight: 500;
 }
 
-.error-message {
-    font-size: 0.8rem;
+#codigo_status option[value="I"] {
     color: #c62828;
-    margin-top: 0.25rem;
-    display: none;
-}
-
-.form-control.invalid+.error-message {
-    display: block;
+    font-weight: 500;
 }
 
 .form-actions {
@@ -291,43 +208,21 @@ select.form-control {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.loader {
-    display: none;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #df5326;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    margin-left: 10px;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 @media (max-width: 768px) {
     .form-row {
         flex-direction: column;
         gap: 1rem;
     }
 
-    .form-group,
-    .small-input {
+    .form-group {
         flex: 1 0 100%;
     }
 
-    .contract-form {
+    .professor-form {
         padding: 1.5rem;
     }
 
-    .contract-header {
+    .professor-header {
         padding: 1.2rem;
         flex-direction: column;
         text-align: center;
@@ -349,10 +244,5 @@ select.form-control {
     .btn {
         width: 100%;
         justify-content: center;
-    }
-
-    .radio-group {
-        flex-direction: column;
-        gap: 0.75rem;
     }
 }

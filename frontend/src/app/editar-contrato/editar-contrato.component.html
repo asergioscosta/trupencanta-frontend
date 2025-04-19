@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Editar Contratos</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="contract-container">
+        <header class="contract-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>
+                        <i class="fas fa-file-contract" aria-hidden="true"></i>
+                        <span>Edição de Contrato</span>
+                        <button class="history-btn" aria-label="Ver histórico de alterações" title="Histórico">
+                            <i class="fas fa-history"></i>
+                        </button>
+                    </h1>
+                    <div class="contract-meta">
+                        <span class="contract-id">ID: #4024</span>
+                        <div class="contract-tags">
+                            <span class="tag academic">Acadêmico</span>
+                            <span class="tag active">Vigente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="contract-form">
+            <section class="form-section">
+                <h2 class="section-title">
+                    <i class="far fa-calendar-alt"></i>
+                    Datas do Contrato
+                </h2>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="start-date">Data de Início das Aulas</label>
+                        <div class="input-wrapper">
+                            <input type="date" id="start-date" value="2024-02-01" required
+                                oninvalid="this.setCustomValidity('Preencha a data de início')"
+                                oninput="this.setCustomValidity('')">
+                            <p class="field-description">Data inicial do período letivo</p>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="sign-date">Data de Inscrição</label>
+                        <div class="input-wrapper">
+                            <input type="date" id="sign-date" value="2024-01-15" required>
+                            <p class="field-description">Quando o aluno foi matriculado</p>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="end-date">Data de Término</label>
+                        <div class="input-wrapper">
+                            <input type="date" id="end-date" value="2024-12-15" required>
+                            <p class="field-description">Data final de vigência</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-clipboard-check"></i>
+                    Status do Contrato
+                </h2>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="contract-status">Status</label>
+                        <div class="input-wrapper">
+                            <select id="contract-status" required>
+                                <option value="active" selected>Ativo</option>
+                                <option value="inactive">Inativo</option>
+                                <option value="suspended">Suspenso</option>
+                            </select>
+                            <p class="field-description">Estado atual do contrato</p>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contract-situation">Situação</label>
+                        <div class="input-wrapper">
+                            <select id="contract-situation" required>
+                                <option value="in_progress" selected>Em Andamento</option>
+                                <option value="completed">Concluído</option>
+                                <option value="pending">Pendente</option>
+                            </select>
+                            <p class="field-description">Situação do cliente no curso</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2 class="section-title">
+                    <i class="fas fa-align-left"></i>
+                    Descrição do Contrato
+                </h2>
+
+                <div class="form-field full-width">
+                    <div class="input-wrapper">
+                        <textarea id="contract-description" placeholder="Insira aqui os detalhes do contrato..."
+                            rows="4" data-ai-suggestions="true"></textarea>
+                        <div class="textarea-footer">
+                            <p class="field-description">Máximo 500 caracteres</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <div class="quick-actions">
+                    <button type="button" class="quick-action-btn">
+                        <i class="fas fa-redo"></i> Renovar
+                    </button>
+                    <button type="button" class="quick-action-btn">
+                        <i class="fas fa-calendar-plus"></i> Prorrogar
+                    </button>
+                </div>
+
+                <div class="main-actions">
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

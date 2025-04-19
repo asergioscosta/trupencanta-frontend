@@ -20,6 +20,7 @@
     "@angular/router": "^18.2.0",
     "@types/pdfjs-dist": "^2.10.377",
     "ng2-pdf-viewer": "^10.4.0",
+    "ngx-mask": "^19.0.6",
     "pdfjs-dist": "^5.1.91",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
