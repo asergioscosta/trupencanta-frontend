@@ -12,7 +12,7 @@ body {
     padding: 20px;
 }
 
-.contrato-container {
+.turma-container {
     max-width: 900px;
     margin: 0 auto;
     background: white;
@@ -21,141 +21,87 @@ body {
     overflow: hidden;
 }
 
-.contrato-header {
+.turma-header {
     display: flex;
     align-items: center;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     background: linear-gradient(135deg, #343434 0%, #2a2a2a 100%);
     color: white;
-    gap: 20px;
+    gap: 15px;
+}
+
+.turma-header h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
 }
 
 .header-icon {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #df5326;
     background-color: rgba(255, 255, 255, 0.1);
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.header-text h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+.turma-form {
+    padding: 1.5rem 2rem;
 }
 
-.header-text p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin: 0;
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
-.contrato-content {
-    padding: 2rem;
-}
-
-.info-section {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 1.5rem;
-}
-
-.info-section:last-child {
-    border-bottom: none;
-}
-
-.info-section h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #343434;
-    margin-bottom: 1.2rem;
+.form-column {
     display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.info-section h2 i {
-    color: #927c70;
-    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .form-section {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.2rem;
+    border-left: 3px solid #df5326;
 }
 
-.form-section h2 {
-    font-size: 1.2rem;
+.form-section.compact {
+    padding: 1rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
     font-weight: 600;
     color: #343434;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-.form-section h2 i {
+.section-title i {
     color: #927c70;
-    font-size: 1.1rem;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.address-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-}
-
-.info-item,
-.address-item {
-    margin-bottom: 1rem;
-}
-
-.info-label,
-.address-label {
-    display: block;
-    font-weight: 500;
-    color: #555;
-    font-size: 0.85rem;
-    margin-bottom: 0.2rem;
-}
-
-.info-value,
-.address-value {
-    color: #343434;
-    font-size: 0.95rem;
-}
-
-.form-row {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    font-size: 1rem;
 }
 
 .form-group {
-    flex: 1;
-    min-width: 200px;
-    position: relative;
+    margin-bottom: 1rem;
 }
 
-.form-group.full-width {
-    flex: 1 0 100%;
+.form-group:last-child {
+    margin-bottom: 0;
 }
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     font-size: 0.9rem;
     font-weight: 500;
     color: #555;
@@ -167,11 +113,11 @@ label {
 
 .form-control {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.7rem 0.9rem;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: all 0.2s ease;
     background-color: white;
 }
@@ -186,36 +132,83 @@ select.form-control {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23343434' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 12px;
-    padding-right: 2.5rem;
+    background-position: right 0.9rem center;
+    background-size: 12px 10px;
+    padding-right: 2rem;
 }
 
-textarea.form-control {
-    min-height: 100px;
-    resize: vertical;
+.info-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
 }
 
-.contrato-actions {
+.info-placeholder {
+    color: #777;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.alunos-section {
+    margin-bottom: 1.5rem;
+}
+
+.section-title .badge {
+    background-color: #df5326;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+}
+
+.alunos-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    min-height: 120px;
+}
+
+.empty-state {
+    text-align: center;
+    color: #777;
+    padding: 1.5rem 0;
+}
+
+.empty-state i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #927c70;
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+}
+
+.form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
     border-top: 1px solid #eaeaea;
 }
 
 .btn {
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.2rem;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: all 0.2s ease;
-    border: none;
 }
 
 .btn-outline {
@@ -231,6 +224,7 @@ textarea.form-control {
 .btn-primary {
     background: #df5326;
     color: white;
+    border: none;
 }
 
 .btn-primary:hover {
@@ -240,39 +234,27 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-
-    .info-grid,
-    .address-grid {
+    .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .contrato-content {
-        padding: 1.5rem;
+    .turma-form {
+        padding: 1.2rem;
     }
 
-    .contrato-header {
-        padding: 1.2rem;
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .turma-header {
+        padding: 1rem;
     }
 
     .header-icon {
-        font-size: 1.8rem;
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
     }
+}
 
-    .form-row {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .form-group {
-        flex: 1 0 100%;
-    }
-
-    .contrato-actions {
+@media (max-width: 480px) {
+    .form-actions {
         flex-direction: column;
     }
 

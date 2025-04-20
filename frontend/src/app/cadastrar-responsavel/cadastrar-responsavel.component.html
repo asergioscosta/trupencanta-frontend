@@ -1,1 +1,160 @@
-<p>cadastrar-responsavel works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Cadastrar Responsável</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="responsavel-container">
+        <div class="responsavel-header">
+            <div class="header-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <div class="header-text">
+                <h1>Cadastro de Responsável</h1>
+                <p>Informe os dados do responsável pelo aluno menor de idade</p>
+            </div>
+        </div>
+
+        <form class="responsavel-form">
+            <div class="form-section">
+                <div class="section-header">
+                    <i class="fas fa-id-card"></i>
+                    <h2>Dados Pessoais</h2>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="nomeCompleto">Nome Completo <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="nomeCompleto" class="form-control" required
+                                placeholder="Digite o nome completo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="form-hint">Nome completo sem abreviações</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cpf">CPF <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="cpf" class="form-control" required placeholder="000.000.000-00">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="form-hint">Somente números</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dataNascimento">Data Nascimento <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="date" id="dataNascimento" class="form-control" required>
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefone1">Telefone 1 <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="telefone1" class="form-control" required
+                                placeholder="(00) 00000-0000">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone2">Telefone 2</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="telefone2" class="form-control" placeholder="(00) 00000-0000">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="email">E-mail <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" class="form-control" required
+                                placeholder="seuemail@exemplo.com">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-header">
+                    <i class="fas fa-child"></i>
+                    <h2>Dados do Aluno</h2>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="curso">Curso <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="curso" class="form-control" required>
+                                <option value="">Selecione o curso</option>
+                            </select>
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="turma">Turma <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="turma" class="form-control" required>
+                                <option value="">Selecione a turma</option>
+                            </select>
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="aluno">Aluno <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select id="aluno" class="form-control" required>
+                                <option value="">Selecione o aluno</option>
+                            </select>
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="codigo_status">Status <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <select name="codigo_status" id="codigo_status" required class="form-control">
+                                <option value="A" selected>Ativo</option>
+                                <option value="I">Inativo</option>
+                            </select>
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                        <div class="form-hint">Status do responsável no sistema</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Salvar
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

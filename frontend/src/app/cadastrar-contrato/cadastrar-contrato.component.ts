@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrar-contrato',
@@ -7,36 +7,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./cadastrar-contrato.component.scss']
 })
 export class CadastrarContratoComponent {
-  cep: string = '';
-  logradouro: string = '';
-  bairro: string = '';
-  complemento: string = '';
-  cidade: string = '';
-  uf: string = '';
-  numero: string = '';
+  statusContrato: string = 'ATIVO';
+  situacaoContrato: string = 'EM_CURSO';
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router) { }
 
-  formatarCep(cep: string): string {
-    return cep.replace(/^(\d{5})(\d{3})$/, '$1-$2');
-  }
+  onStatusChange(event: any): void {
+    const selectedOption = event.target.options[event.target.selectedIndex];
 
-  buscarCep() {
-    if (!this.cep) return;
-
-    this.http.get<any>(`https://brasilapi.com.br/api/cep/v2/${this.cep}`)
-      .subscribe({
-        next: (data) => {
-          this.logradouro = data.street;
-          this.bairro = data.neighborhood;
-          this.cidade = data.city;
-          this.uf = data.state;
-          this.cep = this.formatarCep(data.cep);
-        },
-        error: (err) => {
-          alert('Erro ao buscar CEP.');
-          console.error(err);
-        }
-      });
+    if (selectedOption.value === 'SUSPENSO') {
+      this.router.navigate(['/suspender-contrato']);
+    }
   }
 }

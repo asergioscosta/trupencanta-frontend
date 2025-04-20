@@ -5,30 +5,35 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+
+import { CadastrarAlunoComponent } from './cadastrar-aluno/cadastrar-aluno.component';
 import { CadastrarContratoComponent } from './cadastrar-contrato/cadastrar-contrato.component';
 import { CadastrarCursosComponent } from './cadastrar-cursos/cadastrar-cursos.component';
-import { SuspenderContratoComponent } from './suspender-contrato/suspender-contrato.component';
-import { EditarContratoComponent } from './editar-contrato/editar-contrato.component';
-import { CadastrarResponsavelComponent } from './cadastrar-responsavel/cadastrar-responsavel.component';
 import { CadastrarProfessorComponent } from './cadastrar-professor/cadastrar-professor.component';
+import { CadastrarResponsavelComponent } from './cadastrar-responsavel/cadastrar-responsavel.component';
+import { CadastrarTurmaComponent } from './cadastrar-turma/cadastrar-turma.component';
+import { EditarContratoComponent } from './editar-contrato/editar-contrato.component';
+import { LoginComponent } from './login/login.component';
+import { SuspenderContratoComponent } from './suspender-contrato/suspender-contrato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    CadastrarAlunoComponent,
     CadastrarContratoComponent,
     CadastrarCursosComponent,
-    SuspenderContratoComponent,
-    EditarContratoComponent,
+    CadastrarProfessorComponent,
     CadastrarResponsavelComponent,
-    CadastrarProfessorComponent
+    CadastrarTurmaComponent,
+    EditarContratoComponent,
+    LoginComponent,
+    SuspenderContratoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Cadastro de Aluno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="aluno-container">
+        <form id="form-cadastro-aluno">
+            <div class="aluno-header">
+                <div class="header-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="header-info">
+                    <h1>Cadastro de Aluno</h1>
+                    <div class="aluno-tags">
+                        <span class="tag-matricula">Matrícula: AUTO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aluno-content">
+                <div class="form-section">
+                    <h2><i class="fas fa-user"></i> Dados Pessoais</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome-completo">Nome Completo <span class="required">*</span></label>
+                            <input type="text" id="nome-completo" name="nome-completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="data-nascimento">Data de Nascimento <span class="required">*</span></label>
+                            <input type="date" id="data-nascimento" name="data-nascimento" required
+                                (change)="verificarIdade()">
+                        </div>
+                        <div class="form-group sexo-group">
+                            <label for="sexo">Sexo <span class="required">*</span></label>
+                            <select id="sexo" name="sexo" required>
+                                <option value="">Selecione</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group responsavel-group" *ngIf="mostrarResponsavel">
+                            <label for="responsavel">Responsável <span class="required">*</span></label>
+                            <div *ngIf="responsaveisDisponiveis.length > 0; else cadastrarResponsavel">
+                                <select id="responsavel" name="responsavel" required>
+                                    <option value="">Selecione um responsável</option>
+                                    <option *ngFor="let resp of responsaveisDisponiveis" [value]="resp.id">
+                                        {{ resp.nome }} - {{ resp.documento }}
+                                    </option>
+                                    <option value="novo">+ Cadastrar novo responsável</option>
+                                </select>
+                                <div class="link-cadastro" *ngIf="responsavelSelecionado === 'novo'">
+                                    <a href="/cadastrar-responsavel" class="btn-link">
+                                        <i class="fas fa-plus-circle"></i> Cadastrar novo responsável
+                                    </a>
+                                </div>
+                            </div>
+                            <ng-template #cadastrarResponsavel>
+                                <div class="alert-info">
+                                    <i class="fas fa-info-circle"></i> Nenhum responsável cadastrado.
+                                    <a href="/cadastrar-responsavel" class="btn-link">
+                                        Clique aqui para cadastrar um novo responsável
+                                    </a>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-phone"></i> Contato</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="telefone">Telefone <span class="required">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group" id="responsavel-group">
+                            <label for="telefone-responsavel">Telefone do Responsável</label>
+                            <input type="tel" id="telefone-responsavel" name="telefone-responsavel">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-map-marker-alt"></i> Endereço</h2>
+                    <div class="form-grid">
+                        <div class="form-group cep-group">
+                            <label for="cep">CEP <span class="required">*</span></label>
+                            <div class="cep-input">
+                                <input type="text" id="cep" name="cep" [(ngModel)]="cep" (blur)="buscarCep()"
+                                    maxlength="9" placeholder="00000-000">
+                                <button type="button" class="btn btn-secondary" (click)="buscarCep()">
+                                    <i class="fas fa-search"></i> Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="logradouro">Logradouro <span class="required">*</span></label>
+                            <input type="text" id="logradouro" name="logradouro" [(ngModel)]="logradouro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número <span class="required">*</span></label>
+                            <input type="text" id="numero" name="numero" [(ngModel)]="numero" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" [(ngModel)]="complemento">
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro">Bairro <span class="required">*</span></label>
+                            <input type="text" id="bairro" name="bairro" [(ngModel)]="bairro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade">Cidade <span class="required">*</span></label>
+                            <input type="text" id="cidade" name="cidade" [(ngModel)]="cidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="uf">Estado <span class="required">*</span></label>
+                            <input type="text" id="uf" name="uf" [(ngModel)]="uf" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

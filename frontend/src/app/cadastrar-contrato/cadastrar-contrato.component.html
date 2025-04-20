@@ -4,173 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrupEncanta - Cadastrar Contratos</title>
+    <title>TrupEncanta - Cadastrar Contrato</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="contract-container">
-        <div class="contract-header">
+    <div class="contrato-container">
+        <div class="contrato-header">
             <div class="header-icon">
                 <i class="fas fa-file-contract"></i>
             </div>
             <div class="header-text">
-                <h1>Cadastro de Contrato</h1>
-                <p>Preencha os dados do contrato</p>
+                <h1>Contrato TrupEncanta</h1>
+                <p>Nº <span id="contrato-numero">00001</span></p>
             </div>
-            <div class="header-divider"></div>
         </div>
 
-        <form class="contract-form" id="formContrato">
-            <fieldset class="form-section">
-                <legend><i class="fas fa-user-tie"></i> Dados Pessoais</legend>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Tipo de Pessoa <span class="required">*</span></label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="tipoPessoa" value="F" checked>
-                                <span class="radio-checkmark"></span>
-                                Pessoa Física
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="tipoPessoa" value="J">
-                                <span class="radio-checkmark"></span>
-                                Pessoa Jurídica
-                            </label>
-                        </div>
+        <div class="contrato-content">
+            <div class="info-section">
+                <h2><i class="fas fa-user-graduate"></i> Dados Pessoais</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Nome:</span>
+                        <span class="info-value" id="aluno-nome">Carregando...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Curso:</span>
+                        <span class="info-value" id="aluno-curso">Carregando...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Turma:</span>
+                        <span class="info-value" id="aluno-turma">Carregando...</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="nomeCompleto">Nome Completo/Razão Social <span class="required">*</span></label>
-                        <input type="text" id="nomeCompleto" class="form-control" required>
-                        <div class="form-hint">Nome completo sem abreviações</div>
+            <div class="info-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Endereço</h2>
+                <div class="address-grid">
+                    <div class="address-item">
+                        <span class="address-label">Rua:</span>
+                        <span class="address-value" id="endereco-rua">Rua Exemplo</span>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">Número:</span>
+                        <span class="address-value" id="endereco-numero">123</span>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">Complemento:</span>
+                        <span class="address-value" id="endereco-complemento">Apto 101</span>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">Bairro:</span>
+                        <span class="address-value" id="endereco-bairro">Centro</span>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">Cidade/UF:</span>
+                        <span class="address-value" id="endereco-cidade">São Paulo/SP</span>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">CEP:</span>
+                        <span class="address-value" id="endereco-cep">00000-000</span>
                     </div>
                 </div>
+            </div>
 
+            <div class="form-section">
+                <h2><i class="fas fa-calendar-alt"></i> Datas do Contrato</h2>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="cpfCnpj">CPF/CNPJ <span class="required">*</span></label>
-                        <input type="text" id="cpfCnpj" class="form-control" required>
-                        <div class="form-hint">Somente números</div>
+                        <label for="data-inscricao">Data Inscrição <span class="required">*</span></label>
+                        <input type="date" id="data-inscricao" class="form-control" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="dataNascimento">Data Nascimento <span class="required">*</span></label>
-                        <input type="date" id="dataNascimento" class="form-control" required>
+                        <label for="data-inicio-aula">Data Início Aulas <span class="required">*</span></label>
+                        <input type="date" id="data-inicio-aula" class="form-control" required>
                     </div>
+                </div>
+            </div>
 
+            <div class="form-section">
+                <h2><i class="fas fa-chart-line"></i> Status do Contrato</h2>
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="sexo">Sexo <span class="required">*</span></label>
-                        <select id="sexo" class="form-control" required>
-                            <option value="">Selecione</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="O">Outro</option>
+                        <label for="status-contrato">Status <span class="required">*</span></label>
+                        <select id="status-contrato" class="form-control" required [(ngModel)]="statusContrato"
+                            (change)="onStatusChange($event)" name="statusContrato">
+                            <option value="ATIVO">Ativo</option>
+                            <option value="INATIVO">Inativo</option>
+                            <option value="CANCELADO">Cancelado</option>
+                            <option value="SUSPENSO">Suspenso</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="situacao-contrato">Situação <span class="required">*</span></label>
+                        <select id="situacao-contrato" class="form-control" required [(ngModel)]="situacaoContrato"
+                            name="situacaoContrato">
+                            <option value="EM_CURSO">Em Curso</option>
+                            <option value="AGUARDANDO_TURMA">Aguardando Turma</option>
+                            <option value="CONCLUIDO">Concluído</option>
                         </select>
                     </div>
                 </div>
-            </fieldset>
+            </div>
 
-            <fieldset class="form-section">
-                <legend><i class="fas fa-address-book"></i> Informações de Contato</legend>
-
+            <div class="form-section">
+                <h2><i class="fas fa-edit"></i> Observações</h2>
                 <div class="form-row">
                     <div class="form-group full-width">
-                        <label for="email">E-mail <span class="required">*</span></label>
-                        <input type="email" id="email" class="form-control" required>
-                        <div class="form-hint">Ex: nome&#64;empresa.com</div>
+                        <textarea id="observacoes" class="form-control" rows="4"
+                            placeholder="Informe quaisquer observações relevantes sobre este contrato"></textarea>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="telefone">Telefone Principal <span class="required">*</span></label>
-                        <input type="tel" id="telefone" class="form-control" required>
-                        <div class="form-hint">Com DDD (00) 00000-0000</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefone2">Telefone Secundário</label>
-                        <input type="tel" id="telefone2" class="form-control">
-                        <div class="form-hint">Opcional</div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset class="form-section">
-                <legend><i class="fas fa-map-marker-alt"></i> Endereço Completo</legend>
-
-                <div class="form-row">
-                    <div class="form-group combo-group">
-                        <label for="cep">CEP <span class="required">*</span></label>
-                        <div class="input-combo">
-                            <input type="text" id="cep" class="form-control" required [(ngModel)]="cep" name="cep">
-                            <button type="button" class="combo-btn" (click)="buscarCep()">
-                                <i class="fas fa-search"></i> Buscar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="logradouro">Logradouro <span class="required">*</span></label>
-                        <input type="text" id="logradouro" class="form-control" required [(ngModel)]="logradouro"
-                            name="logradouro">
-                    </div>
-
-                    <div class="form-group small-input">
-                        <label for="numero">Número <span class="required">*</span></label>
-                        <input type="text" id="numero" class="form-control" required [(ngModel)]="numero" name="numero">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="bairro">Bairro <span class="required">*</span></label>
-                        <input type="text" id="bairro" class="form-control" required [(ngModel)]="bairro" name="bairro">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" class="form-control" [(ngModel)]="complemento"
-                            name="complemento">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cidade">Cidade <span class="required">*</span></label>
-                        <input type="text" id="cidade" class="form-control" required [(ngModel)]="cidade" name="cidade">
-                    </div>
-
-                    <div class="form-group small-input">
-                        <label for="uf">UF <span class="required">*</span></label>
-                        <select id="uf" class="form-control" required [(ngModel)]="uf" name="uf">
-                            <option value="">Selecione</option>
-                            <option
-                                *ngFor="let estado of ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']"
-                                [value]="estado">{{ estado }}</option>
-                        </select>
-                    </div>
-                </div>
-            </fieldset>
-
-            <div class="form-actions">
-                <button type="button" class="btn btn-outline" id="btnCancelar">
+            <div class="contrato-actions">
+                <button type="button" class="btn btn-outline" id="btn-cancelar">
                     <i class="fas fa-times"></i> Cancelar
                 </button>
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar Contrato
                 </button>
             </div>
-        </form>
+        </div>
     </div>
+
 </body>
 
 </html>
