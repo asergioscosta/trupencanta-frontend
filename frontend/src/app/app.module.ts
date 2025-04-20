@@ -12,6 +12,7 @@ import { CadastrarCursosComponent } from './cadastrar-cursos/cadastrar-cursos.co
 import { CadastrarProfessorComponent } from './cadastrar-professor/cadastrar-professor.component';
 import { CadastrarResponsavelComponent } from './cadastrar-responsavel/cadastrar-responsavel.component';
 import { CadastrarTurmaComponent } from './cadastrar-turma/cadastrar-turma.component';
+import { ConsultarContratoComponent } from './consultar-contrato/consultar-contrato.component';
 import { EditarContratoComponent } from './editar-contrato/editar-contrato.component';
 import { LoginComponent } from './login/login.component';
 import { SuspenderContratoComponent } from './suspender-contrato/suspender-contrato.component';
@@ -25,6 +26,7 @@ import { SuspenderContratoComponent } from './suspender-contrato/suspender-contr
     CadastrarProfessorComponent,
     CadastrarResponsavelComponent,
     CadastrarTurmaComponent,
+    ConsultarContratoComponent,
     EditarContratoComponent,
     LoginComponent,
     SuspenderContratoComponent

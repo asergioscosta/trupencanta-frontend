@@ -1,0 +1,274 @@
+.contratos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+.contratos-header {
+    background: linear-gradient(135deg, #343434 0%, #2a2a2a 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-icon {
+    font-size: 2rem;
+    color: #df5326;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-info h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.aluno-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.contratos-section {
+    padding: 1.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.2rem;
+    color: #343434;
+}
+
+.btn-add {
+    background: #df5326;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.contratos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contrato-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: all 0.2s;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+
+    &.expanded {
+        border-color: #df5326;
+        background-color: #fff9f7;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.contrato-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.contrato-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+
+    &.ativo {
+        background-color: rgba(46, 204, 113, 0.15);
+        color: #2ecc71;
+    }
+
+    &.inativo {
+        background-color: rgba(231, 76, 60, 0.15);
+        color: #e74c3c;
+    }
+}
+
+.contrato-situacao {
+    font-size: 0.75rem;
+    font-weight: 500;
+
+    &.em-dia {
+        color: #27ae60;
+    }
+
+    &.cancelado {
+        color: #e74c3c;
+    }
+}
+
+.contrato-curso {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.contrato-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contrato-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+
+    i {
+        margin-right: 0.25rem;
+    }
+}
+
+.btn-expand {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.contrato-card.expanded .btn-expand {
+    transform: rotate(180deg);
+    color: #df5326;
+}
+
+.contrato-detalhes {
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px dashed #e0e0e0;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.opcoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.opcao-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    border-radius: 6px;
+    background: #f8f9fa;
+    color: #343434;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+
+    &:hover {
+        background: #df5326;
+        color: white;
+    }
+
+    i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .aluno-info {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .opcoes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contrato-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

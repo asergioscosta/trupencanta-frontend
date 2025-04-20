@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Contratos do Aluno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="contratos-container">
+        <div class="contratos-header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="header-info">
+                    <h1>Contratos do Aluno</h1>
+                    <div class="aluno-info">
+                        <span class="aluno-nome">{{aluno.nome}}</span>
+                        <span class="aluno-matricula">Matrícula: {{aluno.matricula}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contratos-content">
+            <div class="contratos-section">
+                <div class="section-header">
+                    <h2>Contratos</h2>
+                    <button class="btn-add">
+                        <i class="fas fa-plus"></i> Novo Contrato
+                    </button>
+                </div>
+
+                <div class="contratos-list">
+                    <div class="contrato-card" *ngFor="let contrato of contratos"
+                        [class.expanded]="contratoExpandido === contrato.id">
+
+                        <div class="contrato-header">
+                            <span class="contrato-status" [class.ativo]="contrato.statusContrato === 'Ativo'"
+                                [class.inativo]="contrato.statusContrato === 'Inativo'">
+                                {{contrato.statusContrato}}
+                            </span>
+                            <span class="contrato-situacao" [class.em-dia]="contrato.situacaoContrato === 'Em dia'"
+                                [class.cancelado]="contrato.situacaoContrato === 'Cancelado'">
+                                {{contrato.situacaoContrato}}
+                            </span>
+                            <span class="contrato-curso">{{contrato.curso}} - {{contrato.turma}}</span>
+                        </div>
+
+                        <div class="contrato-body" (click)="toggleContrato(contrato.id)">
+                            <div class="contrato-info">
+                                <span><i class="fas fa-calendar-day"></i> {{contrato.dataInicioAulas}}</span>
+                                <span><i class="fas fa-user-tie"></i> {{contrato.professor}}</span>
+                            </div>
+                            <button class="btn-expand">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <div class="contrato-detalhes" *ngIf="contratoExpandido === contrato.id">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Curso</span>
+                                    <span class="info-value">{{contrato.curso}}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Turma</span>
+                                    <span class="info-value">{{contrato.turma}}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Professor</span>
+                                    <span class="info-value">{{contrato.professor}}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Responsável</span>
+                                    <span class="info-value">{{contrato.responsavel || '-'}}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Data Matrícula</span>
+                                    <span class="info-value">{{contrato.dataMatricula}}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Início Aulas</span>
+                                    <span class="info-value">{{contrato.dataInicioAulas}}</span>
+                                </div>
+                            </div>
+
+                            <div class="opcoes-grid">
+                                <a href="#" class="opcao-card">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Contrato</span>
+                                </a>
+                                <a href="#" class="opcao-card">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Responsável</span>
+                                </a>
+                                <a href="#" class="opcao-card">
+                                    <i class="fas fa-users"></i>
+                                    <span>Turma</span>
+                                </a>
+                                <a href="#" class="opcao-card">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Curso</span>
+                                </a>
+                                <a href="#" class="opcao-card">
+                                    <i class="fas fa-print"></i>
+                                    <span>Imprimir</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
