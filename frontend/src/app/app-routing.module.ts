@@ -9,13 +9,14 @@ import { CadastrarProfessorComponent } from './cadastrar-professor/cadastrar-pro
 import { CadastrarResponsavelComponent } from './cadastrar-responsavel/cadastrar-responsavel.component';
 import { CadastrarTurmaComponent } from './cadastrar-turma/cadastrar-turma.component';
 import { ConsultarContratoComponent } from './consultar-contrato/consultar-contrato.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditarContratoComponent } from './editar-contrato/editar-contrato.component';
 import { LoginComponent } from './login/login.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { SuspenderContratoComponent } from './suspender-contrato/suspender-contrato.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'paginainicial', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'buscar', component: BuscarComponent },
   { path: 'cadastrar-aluno', component: CadastrarAlunoComponent },
   { path: 'cadastrar-contrato', component: CadastrarContratoComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'cadastrar-responsavel', component: CadastrarResponsavelComponent },
   { path: 'cadastrar-turma', component: CadastrarTurmaComponent },
   { path: 'consultar-contrato', component: ConsultarContratoComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'editar-contrato', component: EditarContratoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'relatorios', component: RelatoriosComponent },

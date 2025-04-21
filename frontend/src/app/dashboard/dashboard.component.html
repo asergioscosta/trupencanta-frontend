@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Dashboard</title>
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <div class="date-filter">
+                <input type="date" [(ngModel)]="startDate">
+                <span>até</span>
+                <input type="date" [(ngModel)]="endDate">
+                <button (click)="filterData()">Filtrar</button>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Total de Alunos</h3>
+                    <p class="metric-value">{{ totalAlunos | number }}</p>
+                    <p class="metric-change" [class.positive]="alunosChange >= 0" [class.negative]="alunosChange < 0">
+                        <i class="fas" [class.fa-arrow-up]="alunosChange >= 0"
+                            [class.fa-arrow-down]="alunosChange < 0"></i>
+                        {{ alunosChange }}% em relação ao mês passado
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Total de Responsáveis</h3>
+                    <p class="metric-value">{{ totalResponsaveis | number }}</p>
+                    <p class="metric-change" [class.positive]="responsaveisChange >= 0"
+                        [class.negative]="responsaveisChange < 0">
+                        <i class="fas" [class.fa-arrow-up]="responsaveisChange >= 0"
+                            [class.fa-arrow-down]="responsaveisChange < 0"></i>
+                        {{ responsaveisChange }}% em relação ao mês passado
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Total de Professores</h3>
+                    <p class="metric-value">{{ totalProfessores | number }}</p>
+                    <p class="metric-change" [class.positive]="professoresChange >= 0"
+                        [class.negative]="professoresChange < 0">
+                        <i class="fas" [class.fa-arrow-up]="professoresChange >= 0"
+                            [class.fa-arrow-down]="professoresChange < 0"></i>
+                        {{ professoresChange }}% em relação ao mês passado
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Total de Cursos</h3>
+                    <p class="metric-value">{{ totalCursos | number }}</p>
+                    <p class="metric-change" [class.positive]="cursosChange >= 0" [class.negative]="cursosChange < 0">
+                        <i class="fas" [class.fa-arrow-up]="cursosChange >= 0"
+                            [class.fa-arrow-down]="cursosChange < 0"></i>
+                        {{ cursosChange }}% em relação ao mês passado
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Total de Turmas</h3>
+                    <p class="metric-value">{{ totalTurmas | number }}</p>
+                    <p class="metric-change" [class.positive]="turmasChange >= 0" [class.negative]="turmasChange < 0">
+                        <i class="fas" [class.fa-arrow-up]="turmasChange >= 0"
+                            [class.fa-arrow-down]="turmasChange < 0"></i>
+                        {{ turmasChange }}% em relação ao mês passado
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-user-slash"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Alunos Inativos</h3>
+                    <p class="metric-value">{{ totalInativos | number }}</p>
+                    <p class="metric-percentage">{{ (totalInativos / totalAlunos * 100).toFixed(1) }}% do total</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Alunos Suspensos</h3>
+                    <p class="metric-value">{{ totalSuspensos | number }}</p>
+                    <p class="metric-percentage">{{ (totalSuspensos / totalAlunos * 100).toFixed(1) }}% do total</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="chart-container">
+                <h2>Matrículas nos Últimos 6 Meses</h2>
+                <canvas id="matriculasChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h2>Distribuição de Alunos</h2>
+                <canvas id="statusAlunosChart"></canvas>
+                <div class="chart-summary">
+                    <div class="summary-item">
+                        <span class="dot active"></span>
+                        <span>Ativos: {{ totalAlunos - totalInativos - totalSuspensos }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot inactive"></span>
+                        <span>Inativos: {{ totalInativos }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot suspended"></span>
+                        <span>Suspensos: {{ totalSuspensos }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Status dos Contratos</h2>
+                <canvas id="statusContratosChart"></canvas>
+                <div class="chart-summary">
+                    <div class="summary-item">
+                        <span class="dot active"></span>
+                        <span>Ativos: {{ contratosAtivos }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot inactive"></span>
+                        <span>Inativos: {{ contratosInativos }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot warning"></span>
+                        <span>Pendentes: {{ contratosPendentes }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Situação dos Contratos</h2>
+                <canvas id="situacaoContratosChart"></canvas>
+                <div class="chart-summary">
+                    <div class="summary-item">
+                        <span class="dot paid"></span>
+                        <span>Em dia: {{ contratosEmDia }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot overdue"></span>
+                        <span>Vencidos: {{ contratosVencidos }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="dot canceled"></span>
+                        <span>Cancelados: {{ contratosCancelados }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="additional-metrics">
+            <div class="metric-card small">
+                <div class="metric-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Alunos Ativos</h3>
+                    <p class="metric-value">{{ totalAlunos - totalInativos - totalSuspensos | number }}</p>
+                    <p class="metric-percentage">{{ ((totalAlunos - totalInativos - totalSuspensos) / totalAlunos *
+                        100).toFixed(1) }}% do total</p>
+                </div>
+            </div>
+
+            <div class="metric-card small">
+                <div class="metric-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Contratos Ativos</h3>
+                    <p class="metric-value">{{ contratosAtivos | number }}</p>
+                    <p class="metric-percentage">{{ (contratosAtivos / totalContratos * 100).toFixed(1) }}% do total</p>
+                </div>
+            </div>
+
+            <div class="metric-card small">
+                <div class="metric-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="metric-info">
+                    <h3>Contratos em Dia</h3>
+                    <p class="metric-value">{{ contratosEmDia | number }}</p>
+                    <p class="metric-percentage">{{ (contratosEmDia / contratosAtivos * 100).toFixed(1) }}% dos ativos
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
