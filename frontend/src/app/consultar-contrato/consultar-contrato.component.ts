@@ -26,7 +26,7 @@ export class ConsultarContratoComponent {
   contratos: Contrato[] = [
     {
       id: 1,
-      statusContrato: 'Carregando',
+      statusContrato: 'Cancelado',
       situacaoContrato: 'Carregando',
       dataMatricula: 'Carregando',
       dataInicioAulas: 'Carregando',

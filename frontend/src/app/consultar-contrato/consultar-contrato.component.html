@@ -17,7 +17,7 @@
                     <i class="fas fa-file-contract"></i>
                 </div>
                 <div class="header-info">
-                    <h1>Contratos do Aluno</h1>
+                    <h1>Contratos do {{aluno.nome}}</h1>
                     <div class="aluno-info">
                         <span class="aluno-nome">{{aluno.nome}}</span>
                         <span class="aluno-matricula">Matrícula: {{aluno.matricula}}</span>
@@ -41,7 +41,7 @@
 
                         <div class="contrato-header">
                             <span class="contrato-status" [class.ativo]="contrato.statusContrato === 'Ativo'"
-                                [class.inativo]="contrato.statusContrato === 'Inativo'">
+                                [class.inativo]="contrato.statusContrato === 'Inativo'" [class.suspenso]="contrato.statusContrato === 'Suspenso'">
                                 {{contrato.statusContrato}}
                             </span>
                             <span class="contrato-situacao" [class.em-dia]="contrato.situacaoContrato === 'Em dia'"
@@ -90,19 +90,19 @@
                             </div>
 
                             <div class="opcoes-grid">
-                                <a href="#" class="opcao-card">
+                                <a href="cadastrar-contrato" class="opcao-card">
                                     <i class="fas fa-file-alt"></i>
                                     <span>Contrato</span>
                                 </a>
-                                <a href="#" class="opcao-card">
+                                <a href="cadastrar-responsavel" class="opcao-card">
                                     <i class="fas fa-user-shield"></i>
                                     <span>Responsável</span>
                                 </a>
-                                <a href="#" class="opcao-card">
+                                <a href="cadastrar-turma" class="opcao-card">
                                     <i class="fas fa-users"></i>
                                     <span>Turma</span>
                                 </a>
-                                <a href="#" class="opcao-card">
+                                <a href="cadastrar-cursos" class="opcao-card">
                                     <i class="fas fa-graduation-cap"></i>
                                     <span>Curso</span>
                                 </a>
