@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar" [class.collapsed]="isCollapsed">
+        <div class="sidebar-toggle" (click)="toggleCollapse()">
+            <i class="fas" [class.fa-chevron-left]="!isCollapsed" [class.fa-chevron-right]="isCollapsed"></i>
+        </div>
+
+        <div class="logo-container">
+            <img src="img/logo_sidebar.png" alt="TrupEncanta" class="logo">
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a routerLink="/dashboard" class="menu-item" routerLinkActive="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span *ngIf="!isCollapsed">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/buscar" class="menu-item" routerLinkActive="active">
+                        <i class="fas fa-search"></i>
+                        <span *ngIf="!isCollapsed">Buscar</span>
+                    </a>
+                </li>
+                <li class="menu-dropdown">
+                    <div class="menu-item dropdown-toggle">
+                        <i class="fas fa-plus-circle"></i>
+                        <span *ngIf="!isCollapsed">Cadastrar</span>
+                        <i class="fas fa-chevron-down dropdown-icon" *ngIf="!isCollapsed"></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><a href="cadastrar-aluno"><i class="fas fa-user-graduate"></i><span *ngIf="!isCollapsed">
+                                    Aluno</span></a></li>
+                        <li><a href="cadastrar-cursos"><i class="fas fa-book"></i><span *ngIf="!isCollapsed">
+                                    Curso</span></a></li>
+                        <li><a href="cadastrar-professor"><i class="fas fa-chalkboard-teacher"></i><span
+                                    *ngIf="!isCollapsed"> Professor</span></a></li>
+                        <li><a href="cadastrar-responsavel"><i class="fas fa-user-friends"></i><span
+                                    *ngIf="!isCollapsed"> Responsável</span></a></li>
+                        <li><a href="cadastrar-turma"><i class="fas fa-users"></i><span *ngIf="!isCollapsed">
+                                    Turma</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a routerLink="/relatorios" class="menu-item" routerLinkActive="active">
+                        <i class="fas fa-chart-bar"></i>
+                        <span *ngIf="!isCollapsed">Relatórios</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="logout-container">
+            <a href="#" class="logout-btn" (click)="logout($event)">
+                <i class="fas fa-sign-out-alt"></i>
+                <span *ngIf="!isCollapsed">Sair</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content" [class.collapsed]="isCollapsed">
+        <router-outlet></router-outlet>
+    </div>
+
+</body>
+
+</html>

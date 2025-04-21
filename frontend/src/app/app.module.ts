@@ -18,6 +18,7 @@ import { EditarContratoComponent } from './editar-contrato/editar-contrato.compo
 import { LoginComponent } from './login/login.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { SuspenderContratoComponent } from './suspender-contrato/suspender-contrato.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SuspenderContratoComponent } from './suspender-contrato/suspender-contr
     EditarContratoComponent,
     LoginComponent,
     RelatoriosComponent,
-    SuspenderContratoComponent
+    SuspenderContratoComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
