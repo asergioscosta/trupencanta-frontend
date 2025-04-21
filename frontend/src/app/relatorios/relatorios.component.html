@@ -1,1 +1,208 @@
-<p>relatorios works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrupEncanta - Relatórios</title>
+</head>
+
+<body>
+    <div class="relatorios-container">
+        <h1>Relatórios</h1>
+
+        <div class="filtros-container">
+            <div class="filtros-section">
+                <h2>Filtros Principais</h2>
+
+                <div class="filtros-grid">
+                    <div class="filtro-group">
+                        <label for="aluno">Aluno:</label>
+                        <select id="aluno" [(ngModel)]="filtros.aluno" class="form-control">
+                            <option value="">Todos</option>
+                            <option *ngFor="let aluno of alunos" [value]="aluno.id">{{ aluno.nome }}</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="curso">Curso:</label>
+                        <select id="curso" [(ngModel)]="filtros.curso" class="form-control">
+                            <option value="">Todos</option>
+                            <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nome }}</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="professor">Professor:</label>
+                        <select id="professor" [(ngModel)]="filtros.professor" class="form-control">
+                            <option value="">Todos</option>
+                            <option *ngFor="let professor of professores" [value]="professor.id">{{ professor.nome }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="diaSemana">Dia da Semana:</label>
+                        <select id="diaSemana" [(ngModel)]="filtros.diaSemana" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="segunda">Segunda-feira</option>
+                            <option value="terca">Terça-feira</option>
+                            <option value="quarta">Quarta-feira</option>
+                            <option value="quinta">Quinta-feira</option>
+                            <option value="sexta">Sexta-feira</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filtros-section">
+                <h2>Filtros de Contrato</h2>
+
+                <div class="filtros-grid">
+                    <div class="filtro-group">
+                        <label for="statusContrato">Status do Contrato:</label>
+                        <select id="statusContrato" [(ngModel)]="filtros.statusContrato" class="form-control">
+                            <option value="">Todos</option>
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
+                            <option value="suspenso">Suspenso</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="situacaoContrato">Situação do Contrato:</label>
+                        <select id="situacaoContrato" [(ngModel)]="filtros.situacaoContrato" class="form-control">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+
+                    <div class="filtro-group" *ngIf="filtros.statusContrato === 'suspenso'">
+                        <label for="motivoSuspensao">Motivo da Suspensão:</label>
+                        <select id="motivoSuspensao" [(ngModel)]="filtros.motivoSuspensao" class="form-control">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filtros-section">
+                <h2>Filtros Adicionais</h2>
+
+                <div class="filtros-grid">
+                    <div class="filtro-group">
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" id="bairro" [(ngModel)]="filtros.bairro" class="form-control"
+                            placeholder="Digite o bairro">
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" id="endereco" [(ngModel)]="filtros.endereco" class="form-control"
+                            placeholder="Digite o endereço">
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="rua">Rua:</label>
+                        <input type="text" id="rua" [(ngModel)]="filtros.rua" class="form-control"
+                            placeholder="Digite a rua">
+                    </div>
+                </div>
+
+                <div class="filtros-grid">
+                    <div class="filtro-group">
+                        <label for="dataInicioAulas">Data Início Aulas:</label>
+                        <input type="date" id="dataInicioAulas" [(ngModel)]="filtros.dataInicioAulas"
+                            class="form-control">
+                    </div>
+
+                    <div class="filtro-group">
+                        <label for="dataInscricao">Data Inscrição:</label>
+                        <input type="date" id="dataInscricao" [(ngModel)]="filtros.dataInscricao" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controles-relatorio">
+            <button class="btn-gerar" (click)="gerarRelatorio()">Pesquisar</button>
+
+            <div class="exportar-group">
+                <label>Exportar para:</label>
+                <button (click)="exportarParaExcel()">Excel</button>
+                <button (click)="exportarParaCSV()">CSV</button>
+            </div>
+        </div>
+
+        <div class="colunas-config">
+            <h3>Selecione as colunas para exibir:</h3>
+            <div class="colunas-grid">
+                <label *ngFor="let coluna of todasColunas">
+                    <input type="checkbox" [(ngModel)]="coluna.visivel">
+                    {{ coluna.nome }}
+                </label>
+            </div>
+        </div>
+
+        <div class="resultados-container">
+            <div class="resultados-header">
+                <div class="total-registros">
+                    <i class="fas fa-database"></i>
+                    <span>Total: <strong>{{ resultados.length }}</strong> registros</span>
+                </div>
+                <div class="visualizacao-registros">
+                    <i class="fas fa-eye"></i>
+                    <span>Exibindo: <strong>{{ resultados.length > limiteRegistros ? limiteRegistros + '+' :
+                            resultados.length }}</strong></span>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th *ngFor="let coluna of colunasVisiveis">
+                                <div class="th-content">
+                                    {{ coluna.nome }}
+                                    <i class="fas fa-sort" (click)="ordenarPor(coluna.campo)"></i>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of resultados | slice:0:limiteRegistros"
+                            [class.row-destaque]="item.statusContrato === 'suspenso'">
+                            <td *ngFor="let coluna of colunasVisiveis">
+                                <div [class]="getCellClass(item, coluna.campo)">
+                                    <span
+                                        *ngIf="coluna.campo !== 'statusContrato' && coluna.campo !== 'situacaoContrato'">
+                                        {{ item[coluna.campo] }}
+                                    </span>
+
+                                    <span *ngIf="coluna.campo === 'statusContrato'" class="status-badge"
+                                        [class]="item.statusContrato">
+                                        <i [class]="getStatusIcon(item.statusContrato)"></i>
+                                        {{ getStatusText(item.statusContrato) }}
+                                    </span>
+
+                                    <span *ngIf="coluna.campo === 'situacaoContrato'" class="situacao-badge"
+                                        [class]="item.situacaoContrato">
+                                        {{ getSituacaoText(item.situacaoContrato) }}
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer" *ngIf="resultados.length > limiteRegistros">
+                <div class="registros-restantes">
+                    <i class="fas fa-info-circle"></i>
+                    +{{ resultados.length - limiteRegistros }} registros não exibidos. Exporte para ver todos.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
