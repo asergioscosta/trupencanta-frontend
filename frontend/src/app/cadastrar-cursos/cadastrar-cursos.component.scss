@@ -256,3 +256,43 @@ select.form-control {
         gap: 0.5rem;
     }
 }
+
+#professor {
+    height: 40px;
+    padding: 0.5rem 1rem;
+
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    transition: all 0.2s ease;
+}
+
+.professor-group {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+}
+
+#professor:focus {
+    border-color: #df5326;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(223, 83, 38, 0.1);
+    background-color: white;
+}
+
+#professor option {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .professor-group {
+        max-width: 100%;
+    }
+
+    #professor {
+        height: 42px;
+    }
+}

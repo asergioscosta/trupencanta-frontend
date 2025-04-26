@@ -16,104 +16,148 @@
                 <i class="fas fa-chalkboard-teacher"></i>
             </div>
             <div class="header-text">
-                <h1>Cadastro de Professor</h1>
-                <p>Preencha os dados do professor</p>
+                <h1>Cadastrar Professor</h1>
+                <p>Preencha os dados abaixo para cadastrar um novo professor</p>
             </div>
         </div>
 
-        <form class="professor-form">
+        <form th:action="@{/api/professores}" th:object="${professorDTO}" method="POST" class="professor-form">
+            <!-- Dados Pessoais -->
             <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-user-graduate"></i>
-                    <h2>Dados Pessoais</h2>
-                </div>
+                <h2><i class="fas fa-user"></i> Dados Pessoais</h2>
 
                 <div class="form-row">
                     <div class="form-group full-width">
                         <label for="nomeCompleto">Nome Completo <span class="required">*</span></label>
-                        <input type="text" id="nomeCompleto" class="form-control" required>
-                        <div class="form-hint">Nome completo sem abreviações</div>
+                        <input type="text" id="nomeCompleto" th:field="*{nomeCompleto}" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cpf">CPF <span class="required">*</span></label>
-                        <input type="text" id="cpf" class="form-control" required>
-                        <div class="form-hint">Somente números</div>
+                        <input type="text" id="cpf" th:field="*{cpf}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="dataNascimento">Data Nascimento <span class="required">*</span></label>
-                        <input type="date" id="dataNascimento" class="form-control" required>
+                        <input type="date" id="dataNascimento" th:field="*{dataNascimento}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo">Sexo <span class="required">*</span></label>
+                        <select id="sexo" th:field="*{sexo}" required>
+                            <option value="">Selecione</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email">E-mail <span class="required">*</span></label>
-                        <div class="input-wrapper">
-                            <input type="email" id="email" class="form-control" required>
-                            <i class="fas fa-envelope input-icon"></i>
-                        </div>
-                        <div class="form-hint">E-mail válido</div>
+                        <input type="email" id="email" th:field="*{email}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="telefone">Telefone <span class="required">*</span></label>
-                        <div class="input-wrapper">
-                            <input type="tel" id="telefone" class="form-control" required>
-                            <i class="fas fa-phone input-icon"></i>
-                        </div>
-                        <div class="form-hint">Com DDD</div>
+                        <input type="tel" id="telefone" th:field="*{telefone}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone2">Telefone Secundário</label>
+                        <input type="tel" id="telefone2" th:field="*{telefone2}">
                     </div>
                 </div>
             </div>
 
             <div class="form-section">
-                <div class="section-header">
-                    <i class="fas fa-briefcase"></i>
-                    <h2>Dados Profissionais</h2>
-                </div>
+                <h2><i class="fas fa-map-marker-alt"></i> Endereço</h2>
 
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="curso">Curso <span class="required">*</span></label>
-                        <select id="curso" class="form-control" required>
-                            <option value="">Selecione o curso</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="turma">Turma <span class="required">*</span></label>
-                        <select id="turma" class="form-control" required>
-                            <option value="">Selecione a turma</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="codigo_status">Status <span class="required">*</span></label>
-                        <div class="input-wrapper">
-                            <select name="codigo_status" id="codigo_status" required class="form-control">
-                                <option value="A" selected>Ativo</option>
-                                <option value="I">Inativo</option>
-                            </select>
-                            <div class="form-hint">Status do professor no sistema</div>
+                    <div class="cep-group">
+                        <div class="form-group">
+                            <label for="cep">CEP <span class="required">*</span></label>
+                            <input type="text" id="cep" name="cep" [(ngModel)]="cep" (blur)="buscarCep()" required>
                         </div>
+                        <button type="button" class="btn-buscar" id="btn-buscar-cep" (click)="buscarCep()">
+                            <i class="fas fa-search"></i> Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="logradouro">Logradouro <span class="required">*</span></label>
+                        <input type="text" id="logradouro" name="logradouro" [(ngModel)]="logradouro" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="data_admissao">Data de Admissão <span class="required">*</span></label>
-                        <input type="date" id="data_admissao" class="form-control" required>
+                        <label for="numero">Número <span class="required">*</span></label>
+                        <input type="text" id="numero" name="numero" [(ngModel)]="numero" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento" [(ngModel)]="complemento">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bairro">Bairro <span class="required">*</span></label>
+                        <input type="text" id="bairro" name="bairro" [(ngModel)]="bairro" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cidade">Cidade <span class="required">*</span></label>
+                        <input type="text" id="cidade" name="cidade" [(ngModel)]="cidade" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uf">Estado (UF) <span class="required">*</span></label>
+                        <input type="text" id="uf" name="uf" [(ngModel)]="uf" maxlength="2" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2><i class="fas fa-briefcase"></i> Dados Profissionais</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="curso">Curso</label>
+                        <select id="curso" th:field="*{idCurso}">
+                            <option value="">Selecione</option>
+                            <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="turmas">Turmas</label>
+                        <select id="turmas" th:field="*{idsTurmas}" multiple>
+                            <option th:each="turma : ${turmas}" th:value="${turma.id}" th:text="${turma.nome}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="status">Status <span class="required">*</span></label>
+                        <select id="status" th:field="*{status}" required>
+                            <option th:each="status : ${T(com.trupencanta.enums.StatusProfessor).values()}"
+                                th:value="${status}" th:text="${status}"></option>
+                        </select>
                     </div>
                 </div>
             </div>
 
             <div class="form-actions">
-                <button type="button" class="btn btn-outline">
-                    <i class="fas fa-times"></i> Cancelar
+                <button type="button" class="btn btn-outline" onclick="history.back()">
+                    <i class="fas fa-times"></i> Voltar
                 </button>
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar
@@ -121,7 +165,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>

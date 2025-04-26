@@ -17,15 +17,15 @@
         </div>
 
         <div class="course-form-container">
-            <form novalidate method="POST" action="" id="frmCodigos_cadastro" class="course-form">
-                <input type="hidden" id="codigo_id" name="codigo_id" value="9">
+            <form novalidate method="POST" id="frmCodigos_cadastro" class="course-form" th:action="@{/api/cursos}"
+                th:object="${cursoDTO}">
+                <input type="hidden" id="codigo_id" name="id" th:value="*{id}">
 
                 <div class="form-row">
                     <div class="form-group code-group">
                         <label for="codigo_curso">Código do Curso <span class="required">*</span></label>
                         <div class="input-wrapper">
-                            <input type="text" id="codigo_curso" name="codigo_curso" class="form-control" required
-                                data-validation-required-message="Campo obrigatório">
+                            <input type="text" id="codigo_curso" th:field="*{id}" class="form-control" readonly>
                             <div class="form-hint">Gerado automaticamente pelo sistema</div>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
                     <div class="form-group">
                         <label for="codigo_descricao">Descrição <span class="required">*</span></label>
                         <div class="input-wrapper">
-                            <input type="text" name="codigo_descricao" id="codigo_descricao" class="form-control"
-                                required data-validation-required-message="Campo obrigatório">
+                            <input type="text" id="codigo_descricao" th:field="*{descricaoCurso}" class="form-control"
+                                required>
                             <div class="form-hint">Informe a descrição do curso</div>
                         </div>
                     </div>
@@ -44,9 +44,9 @@
                     <div class="form-group">
                         <label for="codigo_status">Status <span class="required">*</span></label>
                         <div class="input-wrapper">
-                            <select name="codigo_status" id="codigo_status" required class="form-control">
-                                <option value="A" selected>Ativo</option>
-                                <option value="I">Inativo</option>
+                            <select id="codigo_status" th:field="*{statusCurso}" required class="form-control">
+                                <option th:each="status : ${T(com.trupencanta.enums.StatusCurso).values()}"
+                                    th:value="${status}" th:text="${status.descricao}"></option>
                             </select>
                             <div class="form-hint">Status do curso no sistema</div>
                         </div>
@@ -54,32 +54,27 @@
                 </div>
 
                 <div class="form-row">
+                    <div class="form-group professor-group">
+                        <label for="professor">Professor</label>
+                        <div class="input-wrapper">
+                            <select id="professor" th:field="*{idProfessor}" class="form-control">
+                                <option value="">Selecione um professor</option>
+                                <option th:each="prof : ${professores}" th:value="${prof.id}" th:text="${prof.nome}">
+                                </option>
+                            </select>
+                            <div class="form-hint">Selecione o professor responsável</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group">
-                        <label>Dia da Aula <span class="required">*</span></label>
+                        <label>Dias de Aula <span class="required">*</span></label>
                         <div class="days-container">
-                            <div class="day-option">
-                                <input type="checkbox" id="segunda" name="dias[]" value="segunda">
-                                <label for="segunda">Segunda</label>
-                            </div>
-                            <div class="day-option">
-                                <input type="checkbox" id="terca" name="dias[]" value="terca">
-                                <label for="terca">Terça</label>
-                            </div>
-                            <div class="day-option">
-                                <input type="checkbox" id="quarta" name="dias[]" value="quarta">
-                                <label for="quarta">Quarta</label>
-                            </div>
-                            <div class="day-option">
-                                <input type="checkbox" id="quinta" name="dias[]" value="quinta">
-                                <label for="quinta">Quinta</label>
-                            </div>
-                            <div class="day-option">
-                                <input type="checkbox" id="sexta" name="dias[]" value="sexta">
-                                <label for="sexta">Sexta</label>
-                            </div>
-                            <div class="day-option">
-                                <input type="checkbox" id="sabado" name="dias[]" value="sabado">
-                                <label for="sabado">Sábado</label>
+                            <div class="day-option" th:each="dia : ${diasSemana}">
+                                <input type="checkbox" th:id="${dia}" th:value="${dia}"
+                                    th:checked="${#lists.contains(cursoDTO.diasAula, dia)}">
+                                <label th:for="${dia}" th:text="${dia}"></label>
                             </div>
                         </div>
                         <div class="form-hint">Selecione os dias de aula</div>
